@@ -20,10 +20,13 @@ pipeline {
         }
 
         stage('Run Application') {
-    steps {
-        sh 'java -jar target/MyMavenSeleniumApp01-1.0-SNAPSHOT.jar'
-    }
-}
+            steps {
+                sh 'echo "Checking target folder..."'
+                sh 'ls target'
+                sh 'echo "Running Selenium App..."'
+                sh 'java -jar target/*shaded.jar'
+            }
+        }
     }
 
     post {

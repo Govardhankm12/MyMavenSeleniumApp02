@@ -13,19 +13,25 @@ public class App {
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
+        options.addArguments("--remote-allow-origins=*");
+
+        // ❌ DO NOT add chromedriver path
+        // ❌ DO NOT add setBinary now
 
         WebDriver driver = new ChromeDriver(options);
 
-        driver.get("https://practicetestautomation.com/practice-test-login/");
+        try {
+            driver.get("https://practicetestautomation.com/practice-test-login/");
 
-        driver.findElement(By.id("username")).sendKeys("student");
-        driver.findElement(By.id("password")).sendKeys("Password123");
-        driver.findElement(By.id("submit")).click();
+            driver.findElement(By.id("username")).sendKeys("student");
+            driver.findElement(By.id("password")).sendKeys("Password123");
+            driver.findElement(By.id("submit")).click();
 
-        System.out.println("Title: " + driver.getTitle());
+            System.out.println("Title: " + driver.getTitle());
 
-        driver.quit();
+        } finally {
+            driver.quit();
+        }
     }
 }

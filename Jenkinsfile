@@ -9,29 +9,20 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('MyMavenSeleniumApp01') {
-                    deleteDir()   // clean workspace inside folder
-                    sh 'mvn clean package'
-                }
+                sh 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                dir('MyMavenSeleniumApp01') {
-                    sh 'mvn test'
-                }
+                sh 'mvn test'
             }
         }
 
         stage('Run Application') {
             steps {
-                dir('MyMavenSeleniumApp01') {
-                    sh 'echo "Checking target folder..."'
-                    sh 'ls target'
-                    sh 'echo "Running Selenium App..."'
-                    sh 'java -jar target/*shaded.jar'
-                }
+                sh 'ls target'
+                sh 'java -jar target/*shaded.jar'
             }
         }
     }
